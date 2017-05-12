@@ -1,6 +1,6 @@
 <div class="container text-center">
   <h1><%= @cocktail.name %></h1>
-  <p><%= link_to "Back", cocktails_path %></p>
+  <p><%= link_to "Back", root_path %></p>
 
   <div class="row">
     <% @cocktail.doses.each do |dose| %>
@@ -8,10 +8,12 @@
         <p>
           <strong><%= dose.ingredient.name %></strong> -
           <%= dose.description %>
+          <%= link_to "🔥", dose_path(dose), method: :delete %>
         </p>
       </div>
     <% end %>
   </div>
+
   <%= simple_form_for [@cocktail, @dose] do |f| %>
     <%= f.association :ingredient %>
     <%= f.input :description %>
